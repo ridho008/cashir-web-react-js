@@ -1,17 +1,17 @@
 import { useState, useEffect } from "react";
 import reactLogo from "./assets/react.svg";
 import viteLogo from "/vite.svg";
-import NavbarComponent from "./components/NavbarComponent";
-import "./App.css";
+import NavbarComponent from "../components/NavbarComponent";
+import "../App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Col, Row, Container } from "react-bootstrap";
-import ResultListCategoriesComponent from "./components/ResultListCategoriesComponent";
-import ListCategoriesComponent from "./components/ListCategoriesComponent";
-import api from "./utils/contants";
-import Menus from "./components/Menus";
+import ResultListCategoriesComponent from "../components/ResultListCategoriesComponent";
+import ListCategoriesComponent from "../components/ListCategoriesComponent";
+import api from "../utils/contants";
+import Menus from "../components/Menus";
 import swal from "sweetalert";
 
-export default function App() {
+export default function Home() {
   let [menus, setMenus] = useState([]);
   const [categories, setCategories] = useState(["Makanan"]);
   const [baskets, setBasket] = useState([]);
@@ -52,7 +52,7 @@ export default function App() {
   }
 
   function inputBasket(value) {
-    // console.log("Menu ", value);
+    console.log("Menu ", value);
 
     // cek apakah product sudah ada dikeranjang ?
     const getByProductID = async () => {
@@ -142,26 +142,3 @@ export default function App() {
     </>
   );
 }
-
-// import React from "react";
-// import * as React from "react";
-// import * as ReactDOM from "react-dom/client";
-// import { createBrowserRouter, RouterProvider, Swicth } from "react-router-dom";
-// import "./index.css";
-// import NavbarComponent from "./components/NavbarComponent";
-// import { Home, Success } from "./views";
-
-// const App = () => {
-//   return (
-//     <createBrowserRouter>
-//       <NavbarComponent />
-//       <main>
-//         <Swicth>
-//           <Route path="/" component={Home} />
-//         </Swicth>
-//       </main>
-//     </createBrowserRouter>
-//   );
-// };
-
-// export default App;

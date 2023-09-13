@@ -1,5 +1,6 @@
 import { Col, ListGroup, Row, Badge } from "react-bootstrap";
 import { numberWithCommas } from "../utils/utils";
+import TotalPayment from "./TotalPayment";
 
 export default function ResultListCategoriesComponent({ baskets }) {
   return (
@@ -31,6 +32,8 @@ export default function ResultListCategoriesComponent({ baskets }) {
             </ListGroup.Item>
           ))}
         </ListGroup>
+
+        <TotalPayment baskets={baskets} />
       </Col>
     </>
   );
