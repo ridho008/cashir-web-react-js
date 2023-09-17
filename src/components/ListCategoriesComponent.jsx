@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Col } from "react-bootstrap";
+import { Card, Col } from "react-bootstrap";
 import api from "../utils/contants";
 import ListGroup from "react-bootstrap/ListGroup";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -47,6 +47,7 @@ export default function ListCategoriesComponent({
           <strong>List Categories</strong>
         </h6>
         <hr />
+
         <ListGroup>
           {categories &&
             categories.map((category) => (

@@ -10,6 +10,7 @@ import ListCategoriesComponent from "./components/ListCategoriesComponent";
 import api from "./utils/contants";
 import Menus from "./components/Menus";
 import swal from "sweetalert";
+import axios from "axios";
 
 export default function App() {
   let [menus, setMenus] = useState([]);
@@ -17,6 +18,9 @@ export default function App() {
   const [baskets, setBasket] = useState([]);
 
   useEffect(() => {
+    const controller = new AbortController();
+    const signal = controller.signal;
+
     const fetchPosts = async () => {
       try {
         const response = await api.get("/products?category.nama=" + categories);
@@ -30,13 +34,15 @@ export default function App() {
     const fetchAllBaskets = async () => {
       try {
         const response = await api.get("/keranjangs");
-        setBasket(response.data);
+        console.log(setBasket(response.data));
       } catch (err) {
         console.log(err);
       }
     };
     fetchAllBaskets();
-  }, [baskets]);
+
+    return () => controller.abort();
+  }, []);
 
   function ChangeClickCategory(value) {
     setCategories(value);
@@ -123,7 +129,7 @@ export default function App() {
             categoriesNow={categories}
           />
           <Col>
-            <h4>
+            <h4 className="mt-4">
               <strong>List Products</strong>
             </h4>
             <hr />

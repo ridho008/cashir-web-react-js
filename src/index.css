@@ -73,3 +73,7 @@ button:focus-visible {
 body {
   font-family: "Inter", sans-serif;
 }
+
+.scrollCard {
+  height: 650px;
+}

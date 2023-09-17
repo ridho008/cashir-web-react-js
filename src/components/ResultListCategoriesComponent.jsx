@@ -1,4 +1,4 @@
-import { Col, ListGroup, Row, Badge } from "react-bootstrap";
+import { Col, ListGroup, Row, Badge, Card } from "react-bootstrap";
 import { numberWithCommas } from "../utils/utils";
 import TotalPayment from "./TotalPayment";
 import { useState } from "react";
@@ -97,46 +97,49 @@ export default function ResultListCategoriesComponent({ baskets }) {
           <strong>Result</strong>
         </h4>
         <hr />
-        <ListGroup variant="flush">
-          {baskets.map((basket) => (
-            <ListGroup.Item
-              key={basket.product.id}
-              onClick={() => handleShow(basket)}
-            >
-              <Row>
-                <Col xs={2}>
-                  <Badge pill bg="info">
-                    {basket.jumlah}
-                  </Badge>
-                </Col>
-                <Col>
-                  <h5>{basket.product.nama}</h5>
-                  <span>{numberWithCommas(basket.product.harga)}</span>
-                </Col>
-                <Col>
-                  <strong className="float-right">
-                    Rp.{numberWithCommas(basket.total_harga)}
-                  </strong>
-                </Col>
-              </Row>
-            </ListGroup.Item>
-          ))}
+        <Card className="overflow-auto scrollCard">
+          <ListGroup variant="flush">
+            {baskets.map((basket) => (
+              <ListGroup.Item
+                key={basket.product.id}
+                onClick={() => handleShow(basket)}
+              >
+                <Row>
+                  <Col xs={2}>
+                    <Badge pill bg="info">
+                      {basket.jumlah}
+                    </Badge>
+                  </Col>
+                  <Col>
+                    <h6>{basket.product.nama}</h6>
+                    <p>
+                      <span>{numberWithCommas(basket.product.harga)}</span>
+                    </p>
+                  </Col>
+                  <Col>
+                    <strong className="float-right">
+                      Rp.{numberWithCommas(basket.total_harga)}
+                    </strong>
+                  </Col>
+                </Row>
+              </ListGroup.Item>
+            ))}
 
-          <ModalComponent
-            handleClose={handleClose}
-            showModal={showModal}
-            basketDetail={basketDetail}
-            count={count}
-            description={description}
-            handleLessButton={handleLessButton}
-            handleAddButton={handleAddButton}
-            handleSubmit={handleSubmit}
-            handleChangeDescription={handleChangeDescription}
-            totalPrice={totalPrice}
-            handleDelete={handleDelete}
-          />
-        </ListGroup>
-
+            <ModalComponent
+              handleClose={handleClose}
+              showModal={showModal}
+              basketDetail={basketDetail}
+              count={count}
+              description={description}
+              handleLessButton={handleLessButton}
+              handleAddButton={handleAddButton}
+              handleSubmit={handleSubmit}
+              handleChangeDescription={handleChangeDescription}
+              totalPrice={totalPrice}
+              handleDelete={handleDelete}
+            />
+          </ListGroup>
+        </Card>
         <TotalPayment baskets={baskets} />
       </Col>
     </>
