@@ -19,11 +19,15 @@ export default function App() {
 
   useEffect(() => {
     const controller = new AbortController();
-    const signal = controller.signal;
 
     const fetchPosts = async () => {
       try {
-        const response = await api.get("/products?category.nama=" + categories);
+        const response = await api.get(
+          "/products?category.nama=" + categories,
+          {
+            signal: controller.signal,
+          }
+        );
         setMenus(response.data);
       } catch (err) {
         console.log(err);
@@ -33,7 +37,9 @@ export default function App() {
 
     const fetchAllBaskets = async () => {
       try {
-        const response = await api.get("/keranjangs");
+        const response = await api.get("/keranjangs", {
+          signal: controller.signal,
+        });
         console.log(setBasket(response.data));
       } catch (err) {
         console.log(err);
