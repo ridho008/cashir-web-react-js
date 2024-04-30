@@ -1,5 +1,5 @@
 import axios from "axios";
 
 export default axios.create({
-  baseURL: "http://localhost:3000",
+  baseURL: "https://kedai-taylor-landing-page.vercel.app/db.json",
 });
