@@ -14,9 +14,9 @@ import axios from "axios";
 
 export default function App() {
   let [menus, setMenus] = useState([]);
-  const [categories, setCategories] = useState(["Makanan"]);
+  const [categories, setCategories] = useState(["Cemilan"]);
   const [baskets, setBasket] = useState([]);
-
+// console.log(baskets);
   useEffect(() => {
     const controller = new AbortController();
 
@@ -40,7 +40,7 @@ export default function App() {
         const response = await api.get("/keranjangs", {
           signal: controller.signal,
         });
-        console.log(setBasket(response.data));
+        setBasket(response.data);
       } catch (err) {
         console.log(err);
       }
@@ -48,7 +48,7 @@ export default function App() {
     fetchAllBaskets();
 
     return () => controller.abort();
-  }, []);
+  }, [baskets]);
 
   function ChangeClickCategory(value) {
     setCategories(value);
@@ -81,6 +81,7 @@ export default function App() {
           const postBasket = async () => {
             try {
               const response = await api.post("/keranjangs", addBasket);
+              
               swal({
                 title: "Success",
                 text: "Item in Basket " + addBasket.product.nama,
@@ -122,6 +123,7 @@ export default function App() {
       }
     };
     getByProductID();
+    
   }
 
   if (!menus) return <div style={{ color: "black" }}>Data is not found</div>;

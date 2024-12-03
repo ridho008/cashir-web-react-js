@@ -1,4 +1,4 @@
-import { Col, ListGroup, Row, Badge, Card } from "react-bootstrap";
+import { Col, ListGroup, Row, Badge, Card, Button } from "react-bootstrap";
 import { numberWithCommas } from "../utils/utils";
 import TotalPayment from "./TotalPayment";
 import { useState } from "react";
@@ -14,7 +14,7 @@ export default function ResultListCategoriesComponent({ baskets }) {
   const [totalPrice, setTotalPrice] = useState(0);
 
   const handleClose = () => setShowModal(false);
-
+  // console.log(baskets);
   const handleShow = (basket) => {
     setShowModal(true);
     setBasketDetail(basket);
@@ -89,6 +89,8 @@ export default function ResultListCategoriesComponent({ baskets }) {
     };
     deleteBasket();
   }
+
+  
 
   return (
     <>
